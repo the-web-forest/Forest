@@ -1,0 +1,92 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Production' " />
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="SendGrid" Version="9.27.0" />
+    <PackageReference Include="TinyCsvParser" Version="2.6.2" />
+    <PackageReference Include="CsvHelper" Version="27.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\User\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Login\" />
+    <None Remove="UseCases\Interfaces\" />
+    <None Remove="MongoDB.Bson" />
+    <None Remove="MongoDB.Driver.Core" />
+    <None Remove="MongoDB.Driver" />
+    <None Remove="Domain\" />
+    <None Remove="External\" />
+    <None Remove="External\Repositories\" />
+    <None Remove="BCrypt" />
+    <None Remove="BCrypt.Net-Next" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="External\Services\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="UseCases\Interfaces\Repositories\" />
+    <None Remove="Microsoft.AspNetCore.Authentication" />
+    <None Remove="Configuration\" />
+    <None Remove="Controllers\User\DTOS\" />
+    <None Remove="UseCases\Register\" />
+    <None Remove="Domain\Models\" />
+    <None Remove="SendGrid" />
+    <None Remove="Controllers\New Folder\" />
+    <None Remove="UseCases\ValidateEmail\" />
+    <None Remove="UseCases\CheckEmail\" />
+    <None Remove="Controllers\Cities\" />
+    <None Remove="Controllers\Email\DTOS\" />
+    <None Remove="UseCases\GetStates\" />
+    <None Remove="UseCases\GetCitiesByState\" />
+    <None Remove="UseCases\SendVerificationEmail\" />
+    <None Remove="UseCases\UserPasswordReset\" />
+    <None Remove="UseCases\UserPasswordChange\" />
+    <None Remove="Controllers\Home\" />
+    <None Remove="TinyCsvParser" />
+    <None Remove="CsvHelper" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\User\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Login\" />
+    <Folder Include="UseCases\Interfaces\" />
+    <Folder Include="Domain\" />
+    <Folder Include="External\" />
+    <Folder Include="External\Repositories\" />
+    <Folder Include="External\Services\" />
+    <Folder Include="UseCases\Interfaces\Repositories\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Controllers\User\DTOS\" />
+    <Folder Include="UseCases\Register\" />
+    <Folder Include="Domain\Models\" />
+    <Folder Include="Controllers\Email\" />
+    <Folder Include="UseCases\ValidateEmail\" />
+    <Folder Include="UseCases\CheckEmail\" />
+    <Folder Include="Controllers\States\" />
+    <Folder Include="Controllers\Email\DTOS\" />
+    <Folder Include="UseCases\GetStates\" />
+    <Folder Include="UseCases\GetCitiesByState\" />
+    <Folder Include="UseCases\SendVerificationEmail\" />
+    <Folder Include="UseCases\UserPasswordReset\" />
+    <Folder Include="UseCases\UserPasswordChange\" />
+    <Folder Include="Controllers\Home\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
+</Project>

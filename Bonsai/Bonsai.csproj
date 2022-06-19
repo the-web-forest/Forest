@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Production' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' " />
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.15.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Authentication" />
+    <None Remove="MongoDB.Driver" />
+    <None Remove="MongoDB.Bson" />
+    <None Remove="Microsoft.Extensions.DependencyInjection" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Controllers\Payment\" />
+    <None Remove="Controllers\Payment\DTOS\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\NewPaymentUseCase\" />
+    <None Remove="Controllers\Payment\Adapters\" />
+    <None Remove="External\" />
+    <None Remove="External\Repositories\" />
+    <None Remove="UseCases\Interfaces\" />
+    <None Remove="UseCases\NewPaymentUseCase\Adapters\" />
+    <None Remove="Domain\Enums\" />
+    <None Remove="Helpers\" />
+    <None Remove="External\Services\" />
+    <None Remove="UseCases\Interfaces\Services\" />
+    <None Remove="External\Services\Payment\" />
+    <None Remove="External\Services\Payment\Pagseguro\" />
+    <None Remove="External\Services\Payment\Pagseguro\DTOS\" />
+    <None Remove="External\Services\Payment\Pagseguro\Adapters\" />
+    <None Remove="External\Services\Payment\Pagseguro\Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\Payment\" />
+    <Folder Include="Controllers\Payment\DTOS\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\NewPaymentUseCase\" />
+    <Folder Include="Controllers\Payment\Adapters\" />
+    <Folder Include="External\" />
+    <Folder Include="External\Repositories\" />
+    <Folder Include="UseCases\Interfaces\" />
+    <Folder Include="UseCases\NewPaymentUseCase\Adapters\" />
+    <Folder Include="Domain\Enums\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="External\Services\" />
+    <Folder Include="UseCases\Interfaces\Services\" />
+    <Folder Include="External\Services\Payment\" />
+    <Folder Include="External\Services\Payment\Pagseguro\" />
+    <Folder Include="External\Services\Payment\Pagseguro\DTOS\" />
+    <Folder Include="External\Services\Payment\Pagseguro\Adapters\" />
+    <Folder Include="External\Services\Payment\Pagseguro\Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UseCases\Interfaces\IAuthService.cs" />
+    <Compile Remove="UseCases\Interfaces\IEmailService.cs" />
+    <Compile Remove="UseCases\Interfaces\IMailVerificationRepository.cs" />
+    <Compile Remove="UseCases\Interfaces\IPasswordResetRepository.cs" />
+    <Compile Remove="UseCases\Interfaces\IStateRepository.cs" />
+  </ItemGroup>
+</Project>
