@@ -57,6 +57,7 @@
     <None Remove="Controllers\Home\" />
     <None Remove="TinyCsvParser" />
     <None Remove="CsvHelper" />
+    <None Remove="UseCases\GetUserInfo\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,6 +85,7 @@
     <Folder Include="UseCases\UserPasswordReset\" />
     <Folder Include="UseCases\UserPasswordChange\" />
     <Folder Include="Controllers\Home\" />
+    <Folder Include="UseCases\GetUserInfo\" />
   </ItemGroup>
 
   <ItemGroup>

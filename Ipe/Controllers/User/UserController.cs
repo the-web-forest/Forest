@@ -1,9 +1,12 @@
-﻿using Ipe.Controllers.User.DTOS;
+﻿using System.Security.Claims;
+using Ipe.Controllers.User.DTOS;
 using Ipe.Domain.Errors;
 using Ipe.UseCases;
+using Ipe.UseCases.GetUserInfo;
 using Ipe.UseCases.Login;
 using Ipe.UseCases.Register;
 using Ipe.UseCases.UserPasswordChange;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ipe.Controllers.User;
@@ -16,19 +19,46 @@ public class UserController : Controller
     private readonly IUseCase<LoginUseCaseInput, LoginUseCaseOutput> _loginUseCase;
     private readonly IUseCase<UserRegisterUseCaseInput, UserRegisterUseCaseOutput> _registerUseCase;
     private readonly IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput> _userPasswordChangeUseCase;
+    private readonly IUseCase<GetUserInfoUseCaseInput, GetUserInfoUseCaseOutput> _getUserInfoUseCase;
 
     public UserController(
         IUseCase<LoginUseCaseInput, LoginUseCaseOutput> loginUseCase,
         IUseCase<UserRegisterUseCaseInput, UserRegisterUseCaseOutput> registerUseCase,
-        IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput> userPasswordChangeUseCase
+        IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput> userPasswordChangeUseCase,
+        IUseCase<GetUserInfoUseCaseInput, GetUserInfoUseCaseOutput> getUserInfoUseCase
         )
     {
         _loginUseCase = loginUseCase;
         _registerUseCase = registerUseCase;
         _userPasswordChangeUseCase = userPasswordChangeUseCase;
+        _getUserInfoUseCase = getUserInfoUseCase;
     }
 
-    [HttpPost, HttpOptions]
+    [HttpGet]
+    [Authorize]
+    public async Task<ObjectResult> GetUserInfo()
+    {
+        try
+        {
+            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var UseCaseInput = new GetUserInfoUseCaseInput
+            {
+                UserId = UserId
+            };
+            var Data = await _getUserInfoUseCase.Run(UseCaseInput);
+            return new ObjectResult(Data);
+        }
+        catch (BaseException e)
+        {
+            return new BadRequestObjectResult(e.Data);
+        }
+        catch (Exception e)
+        {
+            return new BadRequestObjectResult(e.Message);
+        }
+    }
+
+    [HttpPost]
     [Route("Login")]
     public async Task<ObjectResult> Login([FromBody] UserLoginInput userInput)
     {

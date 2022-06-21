@@ -11,6 +11,11 @@ namespace Ipe.External.Repositories
         {
             return await _collection.Find(x => x.Email == Email).FirstOrDefaultAsync();
         }
-	}
+
+        public async Task<User> GetById(string UserId)
+        {
+            return await _collection.Find(x => x.Id == UserId).FirstOrDefaultAsync();
+        }
+    }
 }
 
