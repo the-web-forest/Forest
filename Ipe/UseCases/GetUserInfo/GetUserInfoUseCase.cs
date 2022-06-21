@@ -1,4 +1,6 @@
-﻿using Ipe.UseCases.Interfaces;
+﻿using Ipe.Domain.Exceptions;
+using Ipe.Domain.Models;
+using Ipe.UseCases.Interfaces;
 
 namespace Ipe.UseCases.GetUserInfo
 {
@@ -13,15 +15,32 @@ namespace Ipe.UseCases.GetUserInfo
 
         public async Task<GetUserInfoUseCaseOutput> Run(GetUserInfoUseCaseInput Input)
         {
-            var User = await _userRepository.GetById(Input.UserId);
+            try
+            {
+                var User = await _userRepository.GetById(Input.UserId);
 
-            return new GetUserInfoUseCaseOutput {
+                if (User is null)
+                {
+                    throw new InvalidUserIdException();
+                }
+
+                return BuildResponse(User);
+               
+            } catch (Exception)
+            {
+                throw new InvalidUserIdException();
+            }
+        }
+
+        private static GetUserInfoUseCaseOutput BuildResponse(User User)
+        {
+            return new GetUserInfoUseCaseOutput
+            {
                 Name = User.Name,
                 Email = User.Email,
                 City = User.City,
                 State = User.State
             };
-           
         }
 
     }
