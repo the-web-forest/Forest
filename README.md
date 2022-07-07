@@ -21,6 +21,7 @@ Our microservices are baptized with plant/trees names in Brazillian Portuguese, 
 
 - **Ipê *(Tabebuia)*** - Is an exposed microservice that communicates with our main platform and allows our users to manage your account and your custom forest. 
 - **Bonsai (Bonsai Tree)** - Is an internal microservice that is our payment engine. There are no public endpoints and this microservice serves other microservices. Every donation to Web Forest ecosystem passes through Bonsai.
+- **Samauma (Ceiba Pentandra)** - Is an internal microservice for our backoffice. There are no public endpoints.
 
 ## Our Stack 💻
 
