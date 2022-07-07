@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Production' " />
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.21.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration\" />
+    <None Remove="External\" />
+    <None Remove="Domain\" />
+    <None Remove="UseCases\" />
+    <None Remove="BCrypt.Net-Next" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="MongoDB.Driver" />
+    <None Remove="Microsoft.AspNetCore.Authentication.Core" />
+    <None Remove="Microsoft.AspNetCore.Authentication.Abstractions" />
+    <None Remove="Microsoft.IdentityModel.Tokens" />
+    <None Remove="Microsoft.AspNetCore.Authentication" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Controllers\Home\" />
+    <None Remove="UseCases\Interfaces\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="External\" />
+    <Folder Include="Domain\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="Controllers\Home\" />
+    <Folder Include="UseCases\Interfaces\Services\" />
+  </ItemGroup>
+</Project>

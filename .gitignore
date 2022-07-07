@@ -405,7 +405,12 @@ ASALocalRun/
 .localhistory/
 
 # App Settings Ipê
+
 Ipe/appsettings.Development.json
 Ipe/appsettings.Production.json
+
 Bonsai/appsettings.Development.json
 Bonsai/appsettings.Production.json
+
+Samauma/appsettings.Development.json
+Samauma/appsettings.Production.json
