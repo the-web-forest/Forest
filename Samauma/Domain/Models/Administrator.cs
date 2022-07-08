@@ -1,10 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Samauma.Domain.Models;
 
 namespace Samauma.Domain.Models
 {
-    public class Admnistrator : Model
+    public class Administrator : Model
     {
         [BsonElement("name")]
         public string Name { get; set; }
