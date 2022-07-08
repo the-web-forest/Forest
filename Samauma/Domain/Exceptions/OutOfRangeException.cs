@@ -1,6 +1,6 @@
 ﻿namespace Samauma.Domain.Errors;
 
-public class InvalidPasswordException : BaseException
+public class OutOfRangeException : BaseException
 {
-    public InvalidPasswordException() : base("001", "Invalid Username Or Password")  { }
+    public OutOfRangeException() : base("002", "Out of Range")  { }
 }
