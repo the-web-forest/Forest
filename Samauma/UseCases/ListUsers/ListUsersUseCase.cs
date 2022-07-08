@@ -42,7 +42,7 @@ namespace Samauma.UseCases.ListUsers
                 return 1;
             }
 
-            double Pages = (double)TotalUsers /(double)ITENS_PER_REQUEST;
+            double Pages = TotalUsers / (double)ITENS_PER_REQUEST;
            
             return (long)Math.Ceiling(Pages);
         }

@@ -26,7 +26,7 @@ namespace Samauma.External.Repositories
 
         public async Task<List<User>> ListUsersPerPage(int Page, int ItensPerPage)
         {
-            var SkipQuantity = (Page == 1) ? Page : ((Page - 1) * ItensPerPage);
+            var SkipQuantity = (Page == 1) ? 0 : ((Page - 1) * ItensPerPage);
             var Query = _collection.Find(x => x.Name != null);
             var Results = await Query.Skip(SkipQuantity).Limit(ItensPerPage).ToListAsync();
             return Results;
