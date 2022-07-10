@@ -36,6 +36,9 @@
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Controllers\Home\" />
     <None Remove="UseCases\Interfaces\Services\" />
+    <None Remove="Controllers\User\" />
+    <None Remove="UseCases\ListUsers\" />
+    <None Remove="UseCases\ListUsers\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
@@ -44,5 +47,8 @@
     <Folder Include="UseCases\" />
     <Folder Include="Controllers\Home\" />
     <Folder Include="UseCases\Interfaces\Services\" />
+    <Folder Include="Controllers\User\" />
+    <Folder Include="UseCases\ListUsers\" />
+    <Folder Include="UseCases\ListUsers\Dtos\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Samauma.UseCases;
-using Samauma.UseCases.AdmnistratorLogin;
+using Samauma.UseCases.AdministratorLogin;
+using Samauma.UseCases.ListUsers;
 
 namespace Samauma.Configuration
 {
@@ -7,7 +8,8 @@ namespace Samauma.Configuration
 	{
 		public static void Configure(WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<IUseCase<AdmnistratorLoginUseCaseInput, AdmnistratorLoginUseCaseOutput>, AdmnistratorLoginUseCase>();
+            builder.Services.AddScoped<IUseCase<AdministratorLoginUseCaseInput, AdministratorLoginUseCaseOutput>, AdministratorLoginUseCase>();
+            builder.Services.AddScoped<IUseCase<ListUsersUseCaseInput, ListUsersUseCaseOutput>, ListUsersUseCase>();
         }
     }
 }

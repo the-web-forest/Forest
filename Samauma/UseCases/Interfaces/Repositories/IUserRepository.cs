@@ -7,6 +7,8 @@ namespace Samauma.UseCases.Interfaces
 	{
 		Task<User> GetByEmail(string Email);
 		Task<User> GetById(string UserId);
+		Task<List<User>> ListUsersPerPage(int Page, int ItensPerPage);
+		Task<long> CountUsers();
 	}
 }
 

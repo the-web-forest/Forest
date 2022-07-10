@@ -18,7 +18,7 @@ namespace Samauma.External.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(Admnistrator Admnistrator, Roles Role)
+        public string GenerateToken(Administrator Administrator, Roles Role)
         {
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -27,8 +27,8 @@ namespace Samauma.External.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, Admnistrator.Id),
-                    new Claim(ClaimTypes.Name, Admnistrator.Name),
+                    new Claim(ClaimTypes.NameIdentifier, Administrator.Id),
+                    new Claim(ClaimTypes.Name, Administrator.Name),
                     new Claim(ClaimTypes.Role, Role.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(12),

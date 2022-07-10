@@ -1,4 +1,4 @@
-﻿namespace Samauma.UseCases.AdmnistratorLogin
+﻿namespace Samauma.UseCases.AdministratorLogin
 {
 
 	public class OutputUser
@@ -8,7 +8,7 @@
 		public string Name { get; set; }
     }
 
-	public class AdmnistratorLoginUseCaseOutput
+	public class AdministratorLoginUseCaseOutput
     {
 		public string AccessToken { get; set; }
 		public string TokenType { get; set; }

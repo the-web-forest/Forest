@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Samauma.Controllers.Admnistrator;
+namespace Samauma.Controllers.Administrator;
 
-public class AdmnistratorLoginInput
+public class AdministratorLoginInput
 {
     [Required]
 	[EmailAddress]
