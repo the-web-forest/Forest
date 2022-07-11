@@ -59,17 +59,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\User\" />
-    <Folder Include="UseCases\" />
     <Folder Include="UseCases\Login\" />
-    <Folder Include="UseCases\Interfaces\" />
-    <Folder Include="Domain\" />
-    <Folder Include="External\" />
-    <Folder Include="External\Repositories\" />
     <Folder Include="External\Services\" />
     <Folder Include="UseCases\Interfaces\Repositories\" />
     <Folder Include="Controllers\User\DTOS\" />
     <Folder Include="UseCases\Register\" />
-    <Folder Include="Domain\Models\" />
     <Folder Include="Controllers\Email\" />
     <Folder Include="UseCases\ValidateEmail\" />
     <Folder Include="UseCases\CheckEmail\" />

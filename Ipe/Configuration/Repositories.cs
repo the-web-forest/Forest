@@ -10,6 +10,7 @@ public class Repositories
 		builder.Services.AddScoped<IMailVerificationRepository, MailVerificationRepository>();
 		builder.Services.AddScoped<IStateRepository, StateRepository>();
 		builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
+		builder.Services.AddScoped<ITreeRepository, TreeRepository>();
 	}
 }
 

@@ -1,5 +1,6 @@
 ﻿using Ipe.UseCases;
 using Ipe.UseCases.CheckEmail;
+using Ipe.UseCases.CreateTree;
 using Ipe.UseCases.GetCitiesByState;
 using Ipe.UseCases.GetStates;
 using Ipe.UseCases.GetUserInfo;
@@ -26,6 +27,8 @@ namespace Ipe.Configuration
 			builder.Services.AddScoped<IUseCase<UserPasswordResetUseCaseInput, UserPasswordResetUseCaseOutput>, UserPasswordResetUseCase>();
 			builder.Services.AddScoped<IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput>, UserPasswordChangeUseCase>();
 			builder.Services.AddScoped<IUseCase<GetUserInfoUseCaseInput, GetUserInfoUseCaseOutput>, GetUserInfoUseCase>();
+			
+			builder.Services.AddScoped<IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput>, CreateTreeUseCase>();
 		}
 	}
 }
