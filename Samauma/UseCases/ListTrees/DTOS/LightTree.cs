@@ -1,6 +1,6 @@
-using Ipe.Domain.Models;
+using Samauma.Domain.Models;
 
-namespace Ipe.UseCases.ListTrees.DTOS
+namespace Samauma.UseCases.ListTrees.DTOS
 {
     public class LightTree
     {

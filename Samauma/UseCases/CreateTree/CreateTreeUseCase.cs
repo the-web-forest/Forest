@@ -1,7 +1,7 @@
-﻿using Ipe.Domain.Models;
-using Ipe.UseCases.Interfaces;
+﻿using Samauma.Domain.Models;
+using Samauma.UseCases.Interfaces;
 
-namespace Ipe.UseCases.CreateTree
+namespace Samauma.UseCases.CreateTree
 {
     public class CreateTreeUseCase : IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput>
     {

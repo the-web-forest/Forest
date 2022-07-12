@@ -42,9 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="External\" />
-    <Folder Include="Domain\" />
-    <Folder Include="UseCases\" />
     <Folder Include="Controllers\Home\" />
     <Folder Include="UseCases\Interfaces\Services\" />
     <Folder Include="Controllers\User\" />

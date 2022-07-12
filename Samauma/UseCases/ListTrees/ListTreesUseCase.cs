@@ -1,8 +1,8 @@
-using Ipe.Domain.Errors;
-using Ipe.Domain.Models;
-using Ipe.UseCases.Interfaces;
+using Samauma.Domain.Errors;
+using Samauma.Domain.Models;
+using Samauma.UseCases.Interfaces;
 
-namespace Ipe.UseCases.ListTrees
+namespace Samauma.UseCases.ListTrees
 {
     public class ListTreesUseCase : IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput>
     {

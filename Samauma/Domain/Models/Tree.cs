@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Ipe.Domain.Models
+namespace Samauma.Domain.Models
 {
     public class Tree : Model
     {

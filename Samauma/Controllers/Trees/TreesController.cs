@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ipe.UseCases.CreateTree;
-using Ipe.UseCases.ListTrees;
-using Ipe.UseCases;
-using Ipe.Domain.Errors;
-using Ipe.Controllers.Trees.DTOS;
+using Samauma.UseCases.CreateTree;
+using Samauma.UseCases.ListTrees;
+using Samauma.UseCases;
+using Samauma.Domain.Errors;
+using Samauma.Controllers.Trees.DTOS;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Ipe.Controllers.Trees
+namespace Samauma.Controllers.Trees
 {
     [ApiController]
     [Route("Trees")]
@@ -25,6 +26,7 @@ namespace Ipe.Controllers.Trees
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ObjectResult> CreateTree([FromBody]CreateTreeInput Input)
         {
             //Personal doubt: The authentication from the user should be done in a attribute?
@@ -50,6 +52,7 @@ namespace Ipe.Controllers.Trees
         }
 
         [HttpGet("")]
+        [Authorize]
         public async Task<ObjectResult> GetTree([FromQuery] int Page)
         {
             Page = (Page < 1) ? 1 : Page;

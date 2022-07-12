@@ -1,4 +1,4 @@
-namespace Ipe.UseCases.ListTrees
+namespace Samauma.UseCases.ListTrees
 {
     public class ListTreesUseCaseInput
     {

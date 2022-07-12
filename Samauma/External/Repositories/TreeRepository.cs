@@ -1,8 +1,8 @@
-﻿using Ipe.Domain.Models;
-using Ipe.UseCases.Interfaces;
+﻿using Samauma.Domain.Models;
+using Samauma.UseCases.Interfaces;
 using MongoDB.Driver;
 
-namespace Ipe.External.Repositories
+namespace Samauma.External.Repositories
 {
     public class TreeRepository : BaseRepository<Tree>, ITreeRepository
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ipe.Controllers.Trees.DTOS
+namespace Samauma.Controllers.Trees.DTOS
 {
     public class CreateTreeInput
     {

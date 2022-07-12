@@ -1,6 +1,6 @@
-using Ipe.UseCases.ListTrees.DTOS;
+using Samauma.UseCases.ListTrees.DTOS;
 
-namespace Ipe.UseCases.ListTrees
+namespace Samauma.UseCases.ListTrees
 {
     public class ListTreesUseCaseOutput
 	{

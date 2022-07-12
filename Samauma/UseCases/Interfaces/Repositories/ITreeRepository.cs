@@ -1,7 +1,7 @@
-﻿using Ipe.UseCases.Interfaces.Repositories;
-using Ipe.Domain.Models;
+﻿using Samauma.UseCases.Interfaces.Repositories;
+using Samauma.Domain.Models;
 
-namespace Ipe.UseCases.Interfaces
+namespace Samauma.UseCases.Interfaces
 {
     public interface ITreeRepository : IBaseRepository<Tree>
     {

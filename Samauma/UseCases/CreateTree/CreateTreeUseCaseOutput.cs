@@ -1,4 +1,4 @@
-﻿namespace Ipe.UseCases.CreateTree
+﻿namespace Samauma.UseCases.CreateTree
 {
     public class CreateTreeUseCaseOutput
     {
