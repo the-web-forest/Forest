@@ -1,6 +1,6 @@
 ﻿namespace Samauma.Domain.Errors;
 
-public class OutOfRangeException : BaseException
+public class InvalidUserIdException : BaseException
 {
-    public OutOfRangeException() : base("002", "Out of Range")  { }
+    public InvalidUserIdException() : base("003", "Invalid User Id")  { }
 }

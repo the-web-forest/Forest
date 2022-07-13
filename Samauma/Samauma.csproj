@@ -39,6 +39,7 @@
     <None Remove="Controllers\User\" />
     <None Remove="UseCases\ListUsers\" />
     <None Remove="UseCases\ListUsers\Dtos\" />
+    <None Remove="UseCases\UserDetail\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
@@ -47,5 +48,7 @@
     <Folder Include="Controllers\User\" />
     <Folder Include="UseCases\ListUsers\" />
     <Folder Include="UseCases\ListUsers\Dtos\" />
+    <Folder Include="Controllers\User\" />
+    <Folder Include="UseCases\UserDetail\" />
   </ItemGroup>
 </Project>
