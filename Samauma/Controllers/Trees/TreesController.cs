@@ -82,7 +82,7 @@ namespace Samauma.Controllers.Trees
             }
         }
 
-        [HttpGet("")]
+        [HttpGet("List")]
         [Authorize]
         public async Task<ObjectResult> GetTree([FromQuery] int Page)
         {
@@ -112,7 +112,6 @@ namespace Samauma.Controllers.Trees
         [Authorize]
         public async Task<ObjectResult> GetTreeById(string Id)
         {
-
             try
             {
                 var Data = await _getTreeById.Run(new GetTreeByIdUseCaseInput

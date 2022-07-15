@@ -17,32 +17,30 @@ namespace Samauma.UseCases
 
         public async Task<UpdateTreeUseCaseOutput> Run(UpdateTreeUseCaseInput Input)
         {
-            if (!(await CheckIdExistence(Input.Id)))
-                throw new InvalidTreeIdException();
-
-            await UpdateTree(Input);
+            var TreeToUpdate = await _treeRepository.GetTreeById(Input.Id);
+            await ValidateTreeUpdate(TreeToUpdate, Input);
+            await UpdateTree(TreeToUpdate, Input);
             return new UpdateTreeUseCaseOutput();
         }
 
-        private async Task UpdateTree(UpdateTreeUseCaseInput input)
+        private async Task UpdateTree(Tree Tree, UpdateTreeUseCaseInput Input)
         {
-            await _treeRepository.Update(new Tree
-            {
-                Id = input.Id,
-                Name = input.Name,
-                Description = input.Description,
-                Value = input.Value,
-                Biome = input.Biome,
-                UpdatedAt = DateTime.Now
-            });
+            Tree.Name = Input.Name;
+            Tree.Description = Input.Description;
+            Tree.Value = Input.Value;
+            Tree.Biome = Input.Biome;
+            Tree.UpdatedAt = DateTime.Now;
+            await _treeRepository.Update(Tree);
         }
 
-        private async Task<bool> CheckIdExistence(string Id)
+        private async Task<bool> ValidateTreeUpdate(Tree Tree, UpdateTreeUseCaseInput NewTree)
         {
-            var TreeFound = await _treeRepository.GetTreeById(Id);
+            var TreeWithSameName = await _treeRepository.GetTreeByName(NewTree.Name);
 
-            if (TreeFound == null)
-                return false;
+            if(TreeWithSameName.Id != Tree.Id && TreeWithSameName.Deleted == false)
+            {
+                throw new InvalidTreeNameException();
+            }
 
             return true;    
         }

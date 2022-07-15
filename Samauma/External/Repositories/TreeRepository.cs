@@ -41,5 +41,21 @@ namespace Samauma.External.Repositories
                 
             return Results;
         }
+
+        public async Task<List<Tree>> ListActiveTreesPerPage(int Page, int ItensPerPage)
+        {
+            var SkipQuantity = (Page == 1) ? 0 : ((Page - 1) * ItensPerPage);
+
+            var Query = _collection
+                .Find(x => x.Name != null && x.Deleted == false);
+
+            var Results = await Query
+                .Skip(SkipQuantity)
+                .Limit(ItensPerPage)
+                .ToListAsync();
+
+            return Results;
+        }
+
     }
 }

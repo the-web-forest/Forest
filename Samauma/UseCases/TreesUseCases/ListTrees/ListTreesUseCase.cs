@@ -1,13 +1,14 @@
 using Samauma.Domain.Errors;
 using Samauma.Domain.Models;
 using Samauma.UseCases.Interfaces;
+using Samauma.UseCases.ListTrees.DTOS;
 
 namespace Samauma.UseCases.ListTrees
 {
     public class ListTreesUseCase : IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput>
     {
         private readonly ITreeRepository _treeRepository;
-        private readonly int ITENS_PER_REQUEST = 50;
+        private readonly int ITENS_PER_REQUEST = 10;
 
         public ListTreesUseCase(ITreeRepository treeRepository)
         {
@@ -45,11 +46,11 @@ namespace Samauma.UseCases.ListTrees
         }
 
         private async Task<List<Tree>> GetTrees(int Page)
-            => await _treeRepository.ListTreesPerPage(Page, ITENS_PER_REQUEST);
+            => await _treeRepository.ListActiveTreesPerPage(Page, ITENS_PER_REQUEST);
 
         private ListTreesUseCaseOutput BuildResponse(int CurrentPage, long TotalPages, List<Tree> Trees)
         {
-            var ListOfTrees = Trees.Select(x => DTOS.LightTree.FromTree(x)).ToList();
+            var ListOfTrees = Trees.Select(x => LightTree.FromTree(x)).ToList();
             
             return new ListTreesUseCaseOutput
             {
