@@ -1,5 +1,6 @@
 ﻿using Samauma.Domain.Models;
 using Samauma.UseCases.Interfaces;
+using Samauma.Domain.Errors;
 
 namespace Samauma.UseCases.CreateTree
 {
@@ -16,6 +17,9 @@ namespace Samauma.UseCases.CreateTree
 
         public async Task<CreateTreeUseCaseOutput> Run(CreateTreeUseCaseInput Input)
         {
+            if (await VerifyTreeNameExists(Input.Name))
+                throw new InvalidTreeNameException();
+
             await CreateTree(Input);
             return new CreateTreeUseCaseOutput();
         }
@@ -31,6 +35,15 @@ namespace Samauma.UseCases.CreateTree
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             });
+        }
+
+        private async Task<bool> VerifyTreeNameExists(string Name)
+        {
+            var treeFound = await _treeRepository.GetTreeByName(Name);
+            if(treeFound != null)
+                return true;
+
+            return false;
         }
     }
 }

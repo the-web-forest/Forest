@@ -15,9 +15,14 @@ namespace Samauma.External.Repositories
             return TotalTask;
         }
 
-        public Task<Tree> GetById(string TreeId)
+        public async Task<Tree> GetTreeById(string TreeId)
         {
-            return null;
+            return await _collection.Find(x => x.Id == TreeId).FirstOrDefaultAsync();
+        }
+
+        public async Task<Tree> GetTreeByName(string Name)
+        {
+            return await _collection.Find(x => x.Name == Name).FirstOrDefaultAsync();
         }
 
         public async Task<List<Tree>> ListTreesPerPage(int Page, int ItensPerPage)

@@ -3,6 +3,7 @@ using Samauma.UseCases.AdministratorLogin;
 using Samauma.UseCases.ListUsers;
 using Samauma.UseCases.ListTrees;
 using Samauma.UseCases.CreateTree;
+using Samauma.UseCases.GetTreeById;
 using Samauma.UseCases.UserDetail;
 
 namespace Samauma.Configuration
@@ -18,8 +19,10 @@ namespace Samauma.Configuration
             #endregion
 
             #region Tree
+            builder.Services.AddScoped<IUseCase<UpdateTreeUseCaseInput, UpdateTreeUseCaseOutput>, UpdateTreeUseCase>();
             builder.Services.AddScoped<IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput>, CreateTreeUseCase>();
             builder.Services.AddScoped<IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput>, ListTreesUseCase>();
+            builder.Services.AddScoped<IUseCase<GetTreeByIdUseCaseInput, GetTreeByIdUseCaseOutput>, GetTreeByIdUseCase>();
             #endregion
 
         }

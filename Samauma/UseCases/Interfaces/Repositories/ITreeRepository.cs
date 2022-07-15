@@ -5,7 +5,8 @@ namespace Samauma.UseCases.Interfaces
 {
     public interface ITreeRepository : IBaseRepository<Tree>
     {
-        Task<Tree> GetById(string TreeId);
+        Task<Tree> GetTreeById(string TreeId);
+        Task<Tree> GetTreeByName(string TreeId);
         Task<List<Tree>> ListTreesPerPage(int Page, int ItensPerPage);
         Task<long> CountTrees();
     }

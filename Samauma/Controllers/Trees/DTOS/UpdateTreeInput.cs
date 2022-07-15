@@ -2,8 +2,10 @@
 
 namespace Samauma.Controllers.Trees.DTOS
 {
-    public class CreateTreeInput
+    public class UpdateTreeInput
     {
+        [Required]
+        public string Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

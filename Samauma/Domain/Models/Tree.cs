@@ -9,8 +9,10 @@ namespace Samauma.Domain.Models
         [BsonElement("description")]
         public string Description { get; set; }
         [BsonElement("value")]
-        public int? Value { get; set; }
+        public double? Value { get; set; }
         [BsonElement("biome")]
         public string Biome { get; set; }
+        [BsonElement("deleted")]
+        public bool Deleted{ get; set; }
     }
 }

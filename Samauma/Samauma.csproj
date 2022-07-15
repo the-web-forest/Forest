@@ -38,7 +38,7 @@
     <None Remove="UseCases\Interfaces\Services\" />
     <None Remove="Controllers\User\" />
     <None Remove="UseCases\ListUsers\" />
-    <None Remove="UseCases\ListUsers\Dtos\" />
+    <None Remove="UseCases\UsersUseCases\ListUsers\Dtos\" />
     <None Remove="UseCases\UserDetail\" />
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +46,8 @@
     <Folder Include="Controllers\Home\" />
     <Folder Include="UseCases\Interfaces\Services\" />
     <Folder Include="Controllers\User\" />
-    <Folder Include="UseCases\ListUsers\" />
-    <Folder Include="UseCases\ListUsers\Dtos\" />
+    <Folder Include="UseCases\UsersUseCases\ListUsers\" />
     <Folder Include="Controllers\User\" />
-    <Folder Include="UseCases\UserDetail\" />
+    <Folder Include="UseCases\UsersUseCases\UserDetail\" />
   </ItemGroup>
 </Project>
