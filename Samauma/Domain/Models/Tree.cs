@@ -8,6 +8,8 @@ namespace Samauma.Domain.Models
         public string Name { get; set; }
         [BsonElement("description")]
         public string Description { get; set; }
+        [BsonElement("image")]
+        public string Image { get; set; }
         [BsonElement("value")]
         public double Value { get; set; }
         [BsonElement("biome")]

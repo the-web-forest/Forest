@@ -1,5 +1,6 @@
 ﻿using Samauma.External.Services;
 using Samauma.UseCases.Interfaces;
+using Samauma.UseCases.Interfaces.Services;
 
 namespace Samauma.Configuration
 {
@@ -8,6 +9,7 @@ namespace Samauma.Configuration
 		public static void Configure(WebApplicationBuilder builder)
         {
 			builder.Services.AddScoped<IAuthService, JWTService>();
+			builder.Services.AddScoped<IStorageService, StorageService>();
 		}
 	}
 }

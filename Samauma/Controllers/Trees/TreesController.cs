@@ -42,7 +42,8 @@ namespace Samauma.Controllers.Trees
                     Name = Input.Name,
                     Description = Input.Description,
                     Biome = Input.Biome,
-                    Value = Input.Value
+                    Value = Input.Value,
+                    Base64Image = Input.Image
                 });
                 return new ObjectResult(Data);
             }
@@ -68,7 +69,8 @@ namespace Samauma.Controllers.Trees
                     Name = Input.Name,
                     Description= Input.Description,
                     Biome= Input.Biome,
-                    Value= Input.Value
+                    Value= Input.Value,
+                    ImageBase64 = Input.Image
                 });
                 return new ObjectResult(Data);
             }

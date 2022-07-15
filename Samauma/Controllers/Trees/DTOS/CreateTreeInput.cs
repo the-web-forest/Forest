@@ -13,5 +13,7 @@ namespace Samauma.Controllers.Trees.DTOS
         public double Value { get; set; }
         [Required]
         public string Biome { get; set; }
+        [Required]
+        public string Image { get; set; }
     }
 }
