@@ -1,6 +1,5 @@
 ﻿namespace Samauma.Domain.Errors;
-
-public class InvalidTreeIdException : BaseException
+public class InvalidTreeNameException : BaseException
 {
-    public InvalidTreeIdException() : base("005", "Invalid Tree Id")  { }
+    public InvalidTreeNameException() : base("004", "Tree Name Already Registered") { }
 }

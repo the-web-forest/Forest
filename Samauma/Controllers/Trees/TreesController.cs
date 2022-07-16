@@ -1,38 +1,42 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Samauma.UseCases.CreateTree;
-using Samauma.UseCases.ListTrees;
-using Samauma.UseCases.GetTreeById;
-using Samauma.UseCases;
-using Samauma.Domain.Errors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Samauma.Controllers.Trees.DTOS;
-using Microsoft.AspNetCore.Authorization;
+using Samauma.Domain.Errors;
+using Samauma.UseCases;
+using Samauma.UseCases.CreateTree;
+using Samauma.UseCases.DeleteTree;
+using Samauma.UseCases.GetTreeById;
+using Samauma.UseCases.ListTrees;
 
 namespace Samauma.Controllers.Trees
 {
     [ApiController]
     [Route("Trees")]
+    [Authorize]
     public class TreesController : ControllerBase
     {
         private readonly IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput> _createTreeUseCase;
         private readonly IUseCase<UpdateTreeUseCaseInput, UpdateTreeUseCaseOutput> _updateTreeUseCase;
         private readonly IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput> _listTreesUseCase;
-        private readonly IUseCase<GetTreeByIdUseCaseInput, GetTreeByIdUseCaseOutput> _getTreeById;   
+        private readonly IUseCase<GetTreeByIdUseCaseInput, GetTreeByIdUseCaseOutput> _getTreeByIdUseCase;
+        private readonly IUseCase<DeleteTreeUseCaseInput, DeleteTreeUseCaseOutput> _deleteTreeUseCase;   
 
         public TreesController(
             IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput> createTreeUseCase,
             IUseCase<UpdateTreeUseCaseInput, UpdateTreeUseCaseOutput> updateTreeUseCase,
             IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput> listTreesUseCase,
-            IUseCase<GetTreeByIdUseCaseInput, GetTreeByIdUseCaseOutput> getTreeById
+            IUseCase<GetTreeByIdUseCaseInput, GetTreeByIdUseCaseOutput> getTreeById,
+            IUseCase<DeleteTreeUseCaseInput, DeleteTreeUseCaseOutput> deleteTreeUseCase
             )
         {
             _createTreeUseCase = createTreeUseCase;
             _updateTreeUseCase = updateTreeUseCase;
             _listTreesUseCase = listTreesUseCase;
-            _getTreeById = getTreeById;
+            _getTreeByIdUseCase = getTreeById;
+            _deleteTreeUseCase = deleteTreeUseCase;
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ObjectResult> CreateTree([FromBody]CreateTreeInput Input)
         {
             try
@@ -58,7 +62,6 @@ namespace Samauma.Controllers.Trees
         }
 
         [HttpPut]
-        [Authorize]
         public async Task<ObjectResult> UpdateTree([FromBody]UpdateTreeInput Input)
         {
             try
@@ -85,7 +88,6 @@ namespace Samauma.Controllers.Trees
         }
 
         [HttpGet("List")]
-        [Authorize]
         public async Task<ObjectResult> GetTree([FromQuery] int Page)
         {
             
@@ -111,15 +113,38 @@ namespace Samauma.Controllers.Trees
         }
 
         [HttpGet("{Id}")]
-        [Authorize]
         public async Task<ObjectResult> GetTreeById(string Id)
         {
             try
             {
-                var Data = await _getTreeById.Run(new GetTreeByIdUseCaseInput
+                var Data = await _getTreeByIdUseCase.Run(new GetTreeByIdUseCaseInput
                 {
                     Id = Id
                 });
+
+                return new ObjectResult(Data);
+            }
+            catch (BaseException e)
+            {
+                return new BadRequestObjectResult(e.Data);
+            }
+            catch (Exception e)
+            {
+                return new BadRequestObjectResult(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ObjectResult> DeleteTree(string Id)
+        {
+            try
+            {
+                var Data = await _deleteTreeUseCase.Run(
+                    new DeleteTreeUseCaseInput
+                    {
+                        Id = Id
+                    }
+                );
 
                 return new ObjectResult(Data);
             }
