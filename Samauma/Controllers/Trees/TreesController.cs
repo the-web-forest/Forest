@@ -134,7 +134,7 @@ namespace Samauma.Controllers.Trees
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public async Task<ObjectResult> DeleteTree(string Id)
         {
             try

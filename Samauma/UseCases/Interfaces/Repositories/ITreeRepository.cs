@@ -10,5 +10,6 @@ namespace Samauma.UseCases.Interfaces
         Task<List<Tree>> ListTreesPerPage(int Page, int ItensPerPage);
         Task<List<Tree>> ListActiveTreesPerPage(int Page, int ItensPerPage);
         Task<long> CountTrees();
+        Task<Tree> GetActiveTreeByName(string Name);
     }
 }

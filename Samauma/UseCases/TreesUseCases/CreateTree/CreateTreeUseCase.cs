@@ -47,7 +47,8 @@ namespace Samauma.UseCases.CreateTree
 
         private async Task<bool> VerifyTreeNameExists(string Name)
         {
-            var treeFound = await _treeRepository.GetTreeByName(Name);
+            var treeFound = await _treeRepository.GetActiveTreeByName(Name);
+
             if(treeFound != null)
                 return true;
 
