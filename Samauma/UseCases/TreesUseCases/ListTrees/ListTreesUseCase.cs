@@ -31,7 +31,7 @@ namespace Samauma.UseCases.ListTrees
         }
 
         private async Task<long> GetTotalTrees()
-            => await _treeRepository.CountTrees();
+            => await _treeRepository.CountActiveTrees();
 
         private long GetTotalPages(long TotalTrees)
         {
