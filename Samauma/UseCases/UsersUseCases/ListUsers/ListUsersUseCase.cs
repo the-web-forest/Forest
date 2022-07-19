@@ -8,7 +8,7 @@ namespace Samauma.UseCases.ListUsers
     public class ListUsersUseCase : IUseCase<ListUsersUseCaseInput, ListUsersUseCaseOutput>
     {
         private readonly IUserRepository _userRepository;
-        private readonly int ITENS_PER_REQUEST = 50;
+        private readonly int ITENS_PER_REQUEST = 10;
 
         public ListUsersUseCase(IUserRepository userRepository)
         {

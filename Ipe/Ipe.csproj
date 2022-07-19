@@ -22,7 +22,6 @@
   <ItemGroup>
     <None Remove="Controllers\User\" />
     <None Remove="UseCases\" />
-    <None Remove="UseCases\Login\" />
     <None Remove="UseCases\Interfaces\" />
     <None Remove="MongoDB.Bson" />
     <None Remove="MongoDB.Driver.Core" />
@@ -38,50 +37,43 @@
     <None Remove="UseCases\Interfaces\Repositories\" />
     <None Remove="Microsoft.AspNetCore.Authentication" />
     <None Remove="Controllers\User\DTOS\" />
-    <None Remove="UseCases\Register\" />
     <None Remove="Domain\Models\" />
     <None Remove="SendGrid" />
     <None Remove="Controllers\New Folder\" />
-    <None Remove="UseCases\ValidateEmail\" />
-    <None Remove="UseCases\CheckEmail\" />
     <None Remove="Controllers\Cities\" />
     <None Remove="Controllers\Email\DTOS\" />
-    <None Remove="UseCases\GetStates\" />
-    <None Remove="UseCases\GetCitiesByState\" />
-    <None Remove="UseCases\SendVerificationEmail\" />
-    <None Remove="UseCases\UserPasswordReset\" />
-    <None Remove="UseCases\UserPasswordChange\" />
     <None Remove="Controllers\Home\" />
     <None Remove="TinyCsvParser" />
     <None Remove="CsvHelper" />
-    <None Remove="UseCases\GetUserInfo\" />
+    <None Remove="UseCases\User\Register\" />
+    <None Remove="UseCases\User\Login\" />
+    <None Remove="UseCases\User\GetUserInfo\" />
+    <None Remove="UseCases\User\ValidateEmail\" />
+    <None Remove="UseCases\User\UserPasswordChange\" />
+    <None Remove="UseCases\States\" />
+    <None Remove="UseCases\States\GetCitiesByState\" />
+    <None Remove="UseCases\User\CheckEmail\" />
+    <None Remove="UseCases\States\GetStates\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\User\" />
-    <Folder Include="UseCases\" />
-    <Folder Include="UseCases\Login\" />
-    <Folder Include="UseCases\Interfaces\" />
-    <Folder Include="Domain\" />
-    <Folder Include="External\" />
-    <Folder Include="External\Repositories\" />
     <Folder Include="External\Services\" />
     <Folder Include="UseCases\Interfaces\Repositories\" />
     <Folder Include="Controllers\User\DTOS\" />
-    <Folder Include="UseCases\Register\" />
-    <Folder Include="Domain\Models\" />
     <Folder Include="Controllers\Email\" />
-    <Folder Include="UseCases\ValidateEmail\" />
-    <Folder Include="UseCases\CheckEmail\" />
     <Folder Include="Controllers\States\" />
     <Folder Include="Controllers\Email\DTOS\" />
-    <Folder Include="UseCases\GetStates\" />
-    <Folder Include="UseCases\GetCitiesByState\" />
-    <Folder Include="UseCases\SendVerificationEmail\" />
-    <Folder Include="UseCases\UserPasswordReset\" />
-    <Folder Include="UseCases\UserPasswordChange\" />
     <Folder Include="Controllers\Home\" />
-    <Folder Include="UseCases\GetUserInfo\" />
+    <Folder Include="UseCases\User\Register\" />
+    <Folder Include="UseCases\User\Login\" />
+    <Folder Include="UseCases\User\GetUserInfo\" />
+    <Folder Include="UseCases\User\ValidateEmail\" />
+    <Folder Include="UseCases\User\UserPasswordChange\" />
+    <Folder Include="UseCases\States\" />
+    <Folder Include="UseCases\States\GetCitiesByState\" />
+    <Folder Include="UseCases\User\CheckEmail\" />
+    <Folder Include="UseCases\States\GetStates\" />
   </ItemGroup>
 
   <ItemGroup>

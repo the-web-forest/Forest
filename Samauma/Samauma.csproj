@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,17 +39,17 @@
     <None Remove="UseCases\Interfaces\Services\" />
     <None Remove="Controllers\User\" />
     <None Remove="UseCases\ListUsers\" />
-    <None Remove="UseCases\ListUsers\Dtos\" />
+    <None Remove="UseCases\UsersUseCases\ListUsers\Dtos\" />
+    <None Remove="UseCases\UserDetail\" />
+    <None Remove="Azure.Storage.Blobs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="External\" />
-    <Folder Include="Domain\" />
-    <Folder Include="UseCases\" />
     <Folder Include="Controllers\Home\" />
     <Folder Include="UseCases\Interfaces\Services\" />
     <Folder Include="Controllers\User\" />
-    <Folder Include="UseCases\ListUsers\" />
-    <Folder Include="UseCases\ListUsers\Dtos\" />
+    <Folder Include="UseCases\UsersUseCases\ListUsers\" />
+    <Folder Include="Controllers\User\" />
+    <Folder Include="UseCases\UsersUseCases\UserDetail\" />
   </ItemGroup>
 </Project>
