@@ -11,7 +11,7 @@ namespace Samauma.Configuration
     {
        public static void Configure(WebApplicationBuilder builder) {
 
-            var VaultUri = builder.Configuration["Vault:Url"];
+            var VaultUri = Environment.GetEnvironmentVariable("VAULT_URL");
 
             SecretClientOptions options = new SecretClientOptions()
             {

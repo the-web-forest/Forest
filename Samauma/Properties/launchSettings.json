@@ -14,15 +14,8 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:34694;http://localhost:2101",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "Development": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:8527;http://localhost:3555",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VAULT_URL": "https://webforestkeyvaultdev.vault.azure.net/"
       }
     },
     "Production": {
@@ -30,7 +23,8 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:46045;http://localhost:36406",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "VAULT_URL": "https://webforestkeyvaultprd.vault.azure.net/"
       }
     },
     "IIS Express": {
