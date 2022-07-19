@@ -11,11 +11,14 @@ public class AdministratorController : Controller
 {
 
     private readonly IUseCase<AdministratorLoginUseCaseInput, AdministratorLoginUseCaseOutput> _admnistratorLoginUseCase;
-  
+    private readonly ILogger<AdministratorController> _logger;
+
     public AdministratorController(
+        ILogger<AdministratorController> logger,
         IUseCase<AdministratorLoginUseCaseInput, AdministratorLoginUseCaseOutput> admnistratorLoginUseCase
      )
     {
+        _logger = logger;
         _admnistratorLoginUseCase = admnistratorLoginUseCase;
     }
 
@@ -25,19 +28,20 @@ public class AdministratorController : Controller
     {
        try
         {
+            _logger.LogInformation(message: "{Email} made login!", userInput.Email);
             var Data = await _admnistratorLoginUseCase.Run(new AdministratorLoginUseCaseInput
             {
                 Email = userInput.Email,
                 Password = userInput.Password
             });
-
+       
             return new ObjectResult(Data);
         } catch(BaseException e)
         {
             return new BadRequestObjectResult(e.Data);
         } catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 }

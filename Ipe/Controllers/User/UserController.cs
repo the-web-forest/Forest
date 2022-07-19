@@ -54,7 +54,7 @@ public class UserController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -76,7 +76,7 @@ public class UserController : Controller
             return new BadRequestObjectResult(e.Data);
         } catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -102,7 +102,7 @@ public class UserController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -127,7 +127,7 @@ public class UserController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 }
