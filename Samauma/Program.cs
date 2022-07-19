@@ -1,7 +1,12 @@
-﻿using Samauma.Configuration;
+﻿using Azure.Core;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.Logging;
+using Samauma.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Secrets.Configure(builder);
 Databases.Configure(builder);
 Services.Configure(builder);
 Repositories.Configure(builder);
@@ -18,7 +23,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -26,7 +30,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

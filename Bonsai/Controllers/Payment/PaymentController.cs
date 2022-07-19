@@ -36,7 +36,7 @@ namespace Bonsai.Controllers.Home
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

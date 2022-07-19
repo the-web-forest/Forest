@@ -26,8 +26,19 @@ public class StatesController : Controller
     [HttpGet]
     public async Task<ObjectResult> GetStates()
     {
-        GetStatesUseCaseOutput Data = await _getStatesUseCase.Run(new GetStatesUseCaseInput());
-        return new ObjectResult(Data);
+        try
+        {
+            GetStatesUseCaseOutput Data = await _getStatesUseCase.Run(new GetStatesUseCaseInput());
+            return new ObjectResult(Data);
+        } catch (BaseException e)
+        {
+            return new BadRequestObjectResult(e.Data);
+        } catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+
+        
     }
 
     [HttpGet]
@@ -50,7 +61,7 @@ public class StatesController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 }

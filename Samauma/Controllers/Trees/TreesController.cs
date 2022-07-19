@@ -15,6 +15,7 @@ namespace Samauma.Controllers.Trees
     [Authorize]
     public class TreesController : ControllerBase
     {
+        private readonly ILogger<TreesController> _logger;
         private readonly IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput> _createTreeUseCase;
         private readonly IUseCase<UpdateTreeUseCaseInput, UpdateTreeUseCaseOutput> _updateTreeUseCase;
         private readonly IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput> _listTreesUseCase;
@@ -22,6 +23,7 @@ namespace Samauma.Controllers.Trees
         private readonly IUseCase<DeleteTreeUseCaseInput, DeleteTreeUseCaseOutput> _deleteTreeUseCase;   
 
         public TreesController(
+            ILogger<TreesController> logger,
             IUseCase<CreateTreeUseCaseInput, CreateTreeUseCaseOutput> createTreeUseCase,
             IUseCase<UpdateTreeUseCaseInput, UpdateTreeUseCaseOutput> updateTreeUseCase,
             IUseCase<ListTreesUseCaseInput, ListTreesUseCaseOutput> listTreesUseCase,
@@ -29,6 +31,7 @@ namespace Samauma.Controllers.Trees
             IUseCase<DeleteTreeUseCaseInput, DeleteTreeUseCaseOutput> deleteTreeUseCase
             )
         {
+            _logger = logger;
             _createTreeUseCase = createTreeUseCase;
             _updateTreeUseCase = updateTreeUseCase;
             _listTreesUseCase = listTreesUseCase;
@@ -39,6 +42,8 @@ namespace Samauma.Controllers.Trees
         [HttpPost]
         public async Task<ObjectResult> CreateTree([FromBody]CreateTreeInput Input)
         {
+            _logger.LogInformation("Create Tree Called => {Name}", Input.Name);
+
             try
             {
                 var Data = await _createTreeUseCase.Run(new CreateTreeUseCaseInput
@@ -57,13 +62,14 @@ namespace Samauma.Controllers.Trees
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpPut]
         public async Task<ObjectResult> UpdateTree([FromBody]UpdateTreeInput Input)
         {
+            _logger.LogInformation("Update Tree Called => {Id}", Input.Id);
             try
             {
                 var Data = await _updateTreeUseCase.Run(new UpdateTreeUseCaseInput
@@ -83,14 +89,15 @@ namespace Samauma.Controllers.Trees
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpGet("List")]
         public async Task<ObjectResult> GetTree([FromQuery] int Page)
         {
-            
+            _logger.LogInformation("Get Tree List, Page => {Page}", Page);
+
             Page = (Page < 1) ? 1 : Page;
 
             try
@@ -108,13 +115,14 @@ namespace Samauma.Controllers.Trees
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpGet("{Id}")]
         public async Task<ObjectResult> GetTreeById(string Id)
         {
+            _logger.LogInformation("Get Tree By Id Called => {Id}", Id);
             try
             {
                 var Data = await _getTreeByIdUseCase.Run(new GetTreeByIdUseCaseInput
@@ -130,13 +138,15 @@ namespace Samauma.Controllers.Trees
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpDelete("{Id}")]
         public async Task<ObjectResult> DeleteTree(string Id)
         {
+            _logger.LogInformation("Delete Tree Called => {Id}", Id);
+
             try
             {
                 var Data = await _deleteTreeUseCase.Run(
@@ -154,7 +164,7 @@ namespace Samauma.Controllers.Trees
             }
             catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

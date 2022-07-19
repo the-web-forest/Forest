@@ -52,7 +52,7 @@ public class EmailController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -77,7 +77,7 @@ public class EmailController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -101,7 +101,7 @@ public class EmailController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 
@@ -124,7 +124,7 @@ public class EmailController : Controller
         }
         catch (Exception e)
         {
-            return new BadRequestObjectResult(e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
 }
