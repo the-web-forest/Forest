@@ -7,7 +7,6 @@
     <ReleaseVersion>1.0.0</ReleaseVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Production' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
@@ -17,6 +16,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="SendGrid" Version="9.27.0" />
+    <PackageReference Include="Azure.Core" Version="1.25.0" />
+    <PackageReference Include="Azure.Identity" Version="1.6.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +56,9 @@
     <None Remove="UseCases\States\GetCitiesByState\" />
     <None Remove="UseCases\User\CheckEmail\" />
     <None Remove="UseCases\States\GetStates\" />
+    <None Remove="Azure.Core" />
+    <None Remove="Azure.Identity" />
+    <None Remove="Azure.Security.KeyVault.Secrets" />
   </ItemGroup>
 
   <ItemGroup>

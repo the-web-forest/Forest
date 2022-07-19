@@ -2,6 +2,7 @@ using Bonsai.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Secrets.Configure(builder);
 Databases.Configure(builder);
 Services.Configure(builder);
 Repositories.Configure(builder);

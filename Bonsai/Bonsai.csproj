@@ -11,7 +11,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
@@ -20,6 +19,9 @@
     <PackageReference Include="MongoDB.Bson" Version="2.15.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.3.0" />
+    <PackageReference Include="Azure.Identity" Version="1.6.0" />
+    <PackageReference Include="Azure.Core" Version="1.25.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +49,9 @@
     <None Remove="External\Services\Payment\Pagseguro\DTOS\" />
     <None Remove="External\Services\Payment\Pagseguro\Adapters\" />
     <None Remove="External\Services\Payment\Pagseguro\Enums\" />
+    <None Remove="Azure.Security.KeyVault.Secrets" />
+    <None Remove="Azure.Identity" />
+    <None Remove="Azure.Core" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Payment\" />
