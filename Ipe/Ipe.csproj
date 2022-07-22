@@ -59,6 +59,8 @@
     <None Remove="Azure.Core" />
     <None Remove="Azure.Identity" />
     <None Remove="Azure.Security.KeyVault.Secrets" />
+    <None Remove="Controllers\Plant\DTOs\" />
+    <None Remove="Controllers\Plant\Validators\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -79,6 +81,8 @@
     <Folder Include="UseCases\States\GetCitiesByState\" />
     <Folder Include="UseCases\User\CheckEmail\" />
     <Folder Include="UseCases\States\GetStates\" />
+    <Folder Include="Controllers\Plant\DTOs\" />
+    <Folder Include="Controllers\Plant\Validators\" />
   </ItemGroup>
 
   <ItemGroup>
