@@ -61,6 +61,8 @@
     <None Remove="Azure.Security.KeyVault.Secrets" />
     <None Remove="Controllers\Plant\DTOs\" />
     <None Remove="Controllers\Plant\Validators\" />
+    <None Remove="UseCases\Interfaces\Services\" />
+    <None Remove="External\Services\DTOs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +85,8 @@
     <Folder Include="UseCases\States\GetStates\" />
     <Folder Include="Controllers\Plant\DTOs\" />
     <Folder Include="Controllers\Plant\Validators\" />
+    <Folder Include="UseCases\Interfaces\Services\" />
+    <Folder Include="External\Services\DTOs\" />
   </ItemGroup>
 
   <ItemGroup>

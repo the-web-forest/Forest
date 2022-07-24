@@ -41,6 +41,9 @@ namespace Ipe.Configuration
             var EmailUrlsWelcome = client.GetSecret("Trees-Email-Urls-Welcome").Value.Value;
             var EmailUrlsPasswordReset = client.GetSecret("Trees-Email-Urls-PasswordReset").Value.Value;
 
+            var PaymentServiceUrl = client.GetSecret("Trees-Bonsai-Url").Value.Value;
+            var PaymentToken = client.GetSecret("Trees-Ipe-Bonsai-X-Seed-Key").Value.Value;
+
             builder.Configuration["Database:ConnectionString"] = DatabaseConnectionString;
             builder.Configuration["Database:Name"] = DatabaseName;
 
@@ -56,6 +59,9 @@ namespace Ipe.Configuration
             builder.Configuration["Email:Templates:PasswordResetEmail"] = EmailTemplatePasswordReset;
             builder.Configuration["Email:Urls:WelcomeEmail"] = EmailUrlsWelcome;
             builder.Configuration["Email:Urls:PasswordResetEmail"] = EmailUrlsPasswordReset;
+
+            builder.Configuration["Payment:BaseUrl"] = PaymentServiceUrl;
+            builder.Configuration["Payment:Token"] = PaymentToken;
         }
 
     }
