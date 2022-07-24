@@ -26,16 +26,22 @@ namespace Bonsai.Configuration
             var client = new SecretClient(new Uri(VaultUri), new DefaultAzureCredential(), options);
 
             var DatabaseConnectionString = client.GetSecret("Trees-Databases-Cosmos-ConnectionString").Value.Value;
-            var DatabaseName = client.GetSecret("Trees-Databases-Cosmos-Ipe-Name").Value.Value;
+            var DatabaseName = client.GetSecret("Trees-Databases-Cosmos-Bonsai-Name").Value.Value;
 
             var StorageConnectionString = client.GetSecret("Trees-Storage-ConnectionString").Value.Value;
             var StorageContainerName = client.GetSecret("Trees-Storage-Container-Name").Value.Value;
+
+            var PaymentBaseUrl = client.GetSecret("Trees-Payment-BaseUrl").Value.Value;
+            var PaymentAuthorization = client.GetSecret("Trees-Payment-Authorization").Value.Value;
 
             builder.Configuration["Database:ConnectionString"] = DatabaseConnectionString;
             builder.Configuration["Database:Name"] = DatabaseName;
 
             builder.Configuration["Storage:ConnectionString"] = StorageConnectionString;
             builder.Configuration["Storage:TreeContainerName"] = StorageContainerName;
+
+            builder.Configuration["Payment:BaseUrl"] = PaymentBaseUrl;
+            builder.Configuration["Payment:Authorization"] = PaymentAuthorization;
 
         }
 
