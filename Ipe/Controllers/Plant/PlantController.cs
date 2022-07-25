@@ -24,7 +24,7 @@ public class PlantController : Controller
     }
 
     [HttpPost]
-    public ObjectResult Plant([FromBody] PlantInput Input)
+    public async Task<ObjectResult> Plant([FromBody] PlantInput Input)
     {
         string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -32,7 +32,7 @@ public class PlantController : Controller
 
         try
         {
-            var Data = _createPlantUseCase.Run(new PlantUseCaseInput
+            var Data = await _createPlantUseCase.Run(new PlantUseCaseInput
             {
                 UserId = userId,
                 CardToken = Input.CardToken,

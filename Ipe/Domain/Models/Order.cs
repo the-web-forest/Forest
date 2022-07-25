@@ -15,5 +15,8 @@ namespace Ipe.Domain.Models
 
         [BsonElement("trees")]
         public List<OrderTree> Trees { get; set; }
+
+        [BsonElement("value")]
+        public double Value { get; set; }
     }
 }

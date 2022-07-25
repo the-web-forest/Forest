@@ -27,61 +27,61 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
 
         public async Task<PlantUseCaseOutput> Run(PlantUseCaseInput Input)
         {
-            List<Tree> trees = await GetTreesById(Input.Trees);
-            bool hasInvalidTree = HasInvalidTree(trees);
+            List<Tree> Trees = await GetTreesById(Input.Trees);
+            bool InvalidTrees = HasInvalidTree(Trees);
 
-            if (hasInvalidTree)
+            if (InvalidTrees)
                 throw new InvalidTreeIdException();
 
-            Order order = await InserirOrder(Input);
-            var paymentResult = await ExecutePayment(Input, order, trees);
+            Order Order = await CreateOrder(Input, Trees);
 
-            if(paymentResult.Success)
+            var PaymentResult = await ExecutePayment(Input, Order, Trees);
+
+            if(PaymentResult.Success)
             {
                 Task.WaitAll(new Task[]
                 {
-                    UpdateOrderSucess(order, paymentResult),
-                    CreatePlant(order)
+                    UpdateOrderSucess(Order, PaymentResult),
+                    CreatePlant(Order, Trees)
                 });
             }
             else
             {
-                await UpdateOrderFail(order);
+                await UpdateOrderFail(Order);
             }
 
             //disparar email
 
             return new PlantUseCaseOutput
             {
-                Planted = paymentResult.Success
+                Planted = PaymentResult.Success
             };
         }
 
         private async Task UpdateOrderFail(Order order)
         {
-            order.Status = Status.Declined.ToString();
+            order.Status = PaymentStatus.DECLINED.ToString();
             await _orderRepository.Update(order);
         }
 
         private async Task UpdateOrderSucess(Order order, NewPaymentOutput paymentResult)
         {
-            order.Status = Status.Paid.ToString();
+            order.Status = PaymentStatus.PAID.ToString();
             order.PaymentId = paymentResult.PaymentId;
             await _orderRepository.Update(order);
         }
 
-        private async Task CreatePlant(Order order)
+        private async Task CreatePlant(Order order, List<Tree> Trees)
         {
             var trees = order.Trees
                 .Select(tree => new Plant
                 {
                     OrderId = order.Id,
-                    TreeId = tree.TreeId,
+                    Tree = Trees.Find(x => x.Id == tree.TreeId),
                     Name = tree.Name,
                     Message = tree.Message,
                     Hastags = tree.Hastags
                 });
-
 
             await _plantRepository.CreateMany(trees);
         }
@@ -92,28 +92,30 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
             List<Tree> Trees
         )
         {
-            double paymentValue = GetPaymentTotalValue(Trees);
-            var newPayment = new NewPaymentInput
+            double PaymentValue = GetPaymentTotalValue(Trees);
+
+            var NewPayment = new NewPaymentInput
             {
-                OrderId = Order.Id,
+                OrderId = $"IPE#{Order.Id}#{Input.UserId}",
                 CardToken = Input.CardToken,
                 Description = "Plant Payment",
-                Value = paymentValue
+                Value = PaymentValue
             };
 
-            return await _paymentService.NewPayment(newPayment);
+            return await _paymentService.NewPayment(NewPayment);
         }
 
-        private double GetPaymentTotalValue(List<Tree> trees)
+        private static double GetPaymentTotalValue(List<Tree> trees)
         {
             return trees.Sum(tree => tree.Value);
         }
 
-        private async Task<Order> InserirOrder(PlantUseCaseInput Input)
+        private async Task<Order> CreateOrder(PlantUseCaseInput Input, List<Tree> Trees)
         {
+            var OrderValue = GetPaymentTotalValue(Trees);
             var order = new Order
             {
-                Status = Status.Created.ToString(),
+                Status = PaymentStatus.CREATED.ToString(),
                 UserId = Input.UserId,
                 Trees = Input.Trees
                     .Select(tree => new OrderTree
@@ -123,7 +125,11 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
                         Message = tree.Message,
                         Hastags = tree.Hastags
                     })
-                    .ToList()
+                    .ToList(),
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                PaymentId = null,
+                Value = OrderValue
             };
 
             await _orderRepository.Create(order);
@@ -133,16 +139,19 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
 
         private async Task<List<Tree>> GetTreesById(List<TreeUseCaseInput> trees)
         {
-            var tressId = trees.Select(t => t.Id).ToList();
-            return (await _treeRepository.GetTreesById(TreeId: tressId)).ToList();
+            var TreesId = trees.Select(t => t.Id).ToList();
+            var AllTrees = await _treeRepository.GetTreesById(TreeId: TreesId);
+            return AllTrees.ToList();
         }
 
-        private bool HasInvalidTree(List<Tree> trees)
+        private static bool HasInvalidTree(List<Tree> Trees)
         {
-            if (trees is null || !trees.Any())
+            if (Trees is null || !Trees.Any())
                 return true;
 
-            return trees.Any(tree => tree.Deleted == true);
+            return Trees.Any(tree => tree.Deleted == true);
         }
+
+      
     }
 }
