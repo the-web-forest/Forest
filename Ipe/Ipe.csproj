@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Production' " />
+
+  <ItemGroup>
+    <Compile Remove="UseCases\PlantUseCase - Cópia\**" />
+    <Content Remove="UseCases\PlantUseCase - Cópia\**" />
+    <EmbeddedResource Remove="UseCases\PlantUseCase - Cópia\**" />
+    <None Remove="UseCases\PlantUseCase - Cópia\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
@@ -68,7 +75,6 @@
   <ItemGroup>
     <Folder Include="Controllers\User\" />
     <Folder Include="External\Services\" />
-    <Folder Include="UseCases\Interfaces\Repositories\" />
     <Folder Include="Controllers\User\DTOS\" />
     <Folder Include="Controllers\Email\" />
     <Folder Include="Controllers\States\" />

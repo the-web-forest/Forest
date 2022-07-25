@@ -4,6 +4,7 @@ using Ipe.UseCases.GetCitiesByState;
 using Ipe.UseCases.GetStates;
 using Ipe.UseCases.GetUserInfo;
 using Ipe.UseCases.Login;
+using Ipe.UseCases.PlantUseCase.CreatePlant;
 using Ipe.UseCases.Register;
 using Ipe.UseCases.SendVerificationEmail;
 using Ipe.UseCases.UserPasswordChange;
@@ -26,7 +27,11 @@ namespace Ipe.Configuration
 			builder.Services.AddScoped<IUseCase<UserPasswordResetUseCaseInput, UserPasswordResetUseCaseOutput>, UserPasswordResetUseCase>();
 			builder.Services.AddScoped<IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput>, UserPasswordChangeUseCase>();
 			builder.Services.AddScoped<IUseCase<GetUserInfoUseCaseInput, GetUserInfoUseCaseOutput>, GetUserInfoUseCase>();
-		}
-	}
+
+			#region Plant
+			builder.Services.AddScoped<IUseCase<PlantUseCaseInput, PlantUseCaseOutput>, PlantUseCase>();
+            #endregion
+        }
+    }
 }
 

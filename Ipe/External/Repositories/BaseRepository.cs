@@ -20,6 +20,11 @@ namespace Ipe.External.Repositories
 			await _collection.InsertOneAsync(Data);
         }
 
+		public async Task CreateMany(IEnumerable<T> Data)
+		{
+			await _collection.InsertManyAsync(Data);
+		}
+
 		public async Task Update(T Data)
         {
 			await _collection.ReplaceOneAsync(doc => doc.Id == Data.Id, Data);
