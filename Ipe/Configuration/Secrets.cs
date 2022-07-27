@@ -38,8 +38,13 @@ namespace Ipe.Configuration
             var EmailFromName = client.GetSecret("Trees-Email-From-Name").Value.Value;
             var EmailTemplateWelcome = client.GetSecret("Trees-Email-Templates-Welcome").Value.Value;
             var EmailTemplatePasswordReset = client.GetSecret("Trees-Email-Templates-PasswordReset").Value.Value;
+            var EmailTemplatePlantSuccess = client.GetSecret("Trees-Email-Templates-PlantSuccess").Value.Value;
+            var EmailTemplatePlantFail = client.GetSecret("Trees-Email-Templates-PlantFail").Value.Value;
             var EmailUrlsWelcome = client.GetSecret("Trees-Email-Urls-Welcome").Value.Value;
             var EmailUrlsPasswordReset = client.GetSecret("Trees-Email-Urls-PasswordReset").Value.Value;
+
+            var PaymentServiceUrl = client.GetSecret("Trees-Bonsai-Url").Value.Value;
+            var PaymentToken = client.GetSecret("Trees-Ipe-Bonsai-X-Seed-Key").Value.Value;
 
             builder.Configuration["Database:ConnectionString"] = DatabaseConnectionString;
             builder.Configuration["Database:Name"] = DatabaseName;
@@ -54,8 +59,13 @@ namespace Ipe.Configuration
             builder.Configuration["Email:FromName"] = EmailFromName;
             builder.Configuration["Email:Templates:WelcomeEmail"] = EmailTemplateWelcome;
             builder.Configuration["Email:Templates:PasswordResetEmail"] = EmailTemplatePasswordReset;
+            builder.Configuration["Email:Templates:PlantSuccessEmail"] = EmailTemplatePlantSuccess;
+            builder.Configuration["Email:Templates:PlantFailEmail"] = EmailTemplatePlantFail;
             builder.Configuration["Email:Urls:WelcomeEmail"] = EmailUrlsWelcome;
             builder.Configuration["Email:Urls:PasswordResetEmail"] = EmailUrlsPasswordReset;
+
+            builder.Configuration["Payment:BaseUrl"] = PaymentServiceUrl;
+            builder.Configuration["Payment:Token"] = PaymentToken;
         }
 
     }

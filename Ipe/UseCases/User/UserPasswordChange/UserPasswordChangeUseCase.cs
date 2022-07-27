@@ -60,15 +60,12 @@ public class UserPasswordChangeUseCase: IUseCase<UserPasswordChangeUseCaseInput,
     private async Task UpdatePasswordResetRegister(PasswordReset PasswordReset)
     {
         PasswordReset.Reseted = true;
-        PasswordReset.UpdatedAt = DateTime.Now;
-        PasswordReset.ResetedAt = DateTime.Now;
         await _passwordResetRepository.Update(PasswordReset);
     }
 
     private async Task UpdateUserPasssowrd(User User, UserPasswordChangeUseCaseInput Input)
     {
         User.Password = BCryptLib.HashPassword(Input.Password);
-        User.UpdatedAt = DateTime.Now;
         await _userRepository.Update(User);
     }
 }

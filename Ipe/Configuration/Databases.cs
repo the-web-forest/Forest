@@ -11,6 +11,9 @@ namespace Ipe.Configuration
 			ConfigureUserCollection(Database);
 			ConfigureMailVerificationCollection(Database);
 			ConfigurePasswordResetCollection(Database);
+			ConfigureTreeCollection(Database);
+			ConfigureOrderCollection(Database);
+			ConfigurePlantCollection(Database);
 			builder.Services.AddSingleton(x => Database);
 		}
 
@@ -41,6 +44,32 @@ namespace Ipe.Configuration
 			PasswordResetCollection.Indexes.CreateOne(indexModel);
 		}
 
-	}
+		private static void ConfigureTreeCollection(IMongoDatabase Database)
+		{
+			var treeCollection = Database.GetCollection<Tree>(typeof(Tree).Name);
+			var indexOptions = new CreateIndexOptions();
+			var indexKeys = Builders<Tree>.IndexKeys.Ascending(x => x.CreatedAt);
+			var indexModel = new CreateIndexModel<Tree>(indexKeys, indexOptions);
+			treeCollection.Indexes.CreateOne(indexModel);
+		}
+
+		private static void ConfigureOrderCollection(IMongoDatabase Database)
+		{
+			var orderCollection = Database.GetCollection<Order>(typeof(Order).Name);
+			var indexOptions = new CreateIndexOptions();
+			var indexKeys = Builders<Order>.IndexKeys.Ascending(x => x.CreatedAt);
+			var indexModel = new CreateIndexModel<Order>(indexKeys, indexOptions);
+			orderCollection.Indexes.CreateOne(indexModel);
+		}
+
+        private static void ConfigurePlantCollection(IMongoDatabase Database)
+        {
+            var PasswordResetCollection = Database.GetCollection<Plant>(typeof(Plant).Name);
+            var indexOptions = new CreateIndexOptions();
+            var indexKeys = Builders<Plant>.IndexKeys.Ascending(x => x.CreatedAt);
+            var indexModel = new CreateIndexModel<Plant>(indexKeys, indexOptions);
+            PasswordResetCollection.Indexes.CreateOne(indexModel);
+        }
+    }
 }
 

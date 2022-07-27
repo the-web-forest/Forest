@@ -1,5 +1,6 @@
 ﻿using Ipe.External.Services;
 using Ipe.UseCases.Interfaces;
+using Ipe.UseCases.Interfaces.Services;
 using SendGrid;
 namespace Ipe.Configuration
 {
@@ -7,13 +8,14 @@ namespace Ipe.Configuration
 	{
 		public static void Configure(WebApplicationBuilder builder)
         {
-			builder.Services.AddScoped<IAuthService, JWTService>();
+			builder.Services.AddSingleton<IAuthService, JWTService>();
 
 			builder.Services.AddSingleton(x =>
 				new SendGridClient(builder.Configuration["Email:ApiKey"])
 			);
 
-			builder.Services.AddScoped<IEmailService, SendGridService>();
-		}
+			builder.Services.AddSingleton<IEmailService, SendGridService>();
+			builder.Services.AddSingleton<IPaymentService, PaymentService>();
+        }
 	}
 }
