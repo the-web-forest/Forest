@@ -48,8 +48,6 @@ public class SendVerificationEmailUseCase: IUseCase<SendVerificationEmailUseCase
             Role = Roles.User.ToString(),
             Email = Email,
             Activated = false,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now,
             ActivatedAt = null,
             Token = UserRegistrationToken
         });

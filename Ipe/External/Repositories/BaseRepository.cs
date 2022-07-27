@@ -17,16 +17,24 @@ namespace Ipe.External.Repositories
 
 		public async Task Create(T Data)
         {
-			await _collection.InsertOneAsync(Data);
+			Data.CreatedAt = DateTime.Now;
+			Data.UpdatedAt = DateTime.Now;
+            await _collection.InsertOneAsync(Data);
         }
 
-		public async Task CreateMany(IEnumerable<T> Data)
+		public async Task CreateMany(List<T> Data)
 		{
+			for(int i = 0; i< Data.Count; i++)
+            {
+				Data[i].CreatedAt = DateTime.Now;
+				Data[i].UpdatedAt = DateTime.Now;
+            }
 			await _collection.InsertManyAsync(Data);
 		}
 
 		public async Task Update(T Data)
         {
+			Data.UpdatedAt = DateTime.Now;
 			await _collection.ReplaceOneAsync(doc => doc.Id == Data.Id, Data);
         }
 	}

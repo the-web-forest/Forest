@@ -50,8 +50,6 @@ namespace Ipe.UseCases.Register
                 Password = BCryptLib.HashPassword(Input.Password),
                 City = Input.City,
                 State = Input.State,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
                 EmailVerified = false
             });
         }
@@ -64,8 +62,6 @@ namespace Ipe.UseCases.Register
                 Role = Roles.User.ToString(),
                 Email = Input.Email,
                 Activated = false,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
                 ActivatedAt = null,
                 Token = UserRegistrationToken
             });

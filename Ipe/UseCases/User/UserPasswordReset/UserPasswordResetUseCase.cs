@@ -49,8 +49,6 @@ public class UserPasswordResetUseCase: IUseCase<UserPasswordResetUseCaseInput, U
             Role = Roles.User.ToString(),
             Email = Email,
             Reseted = false,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now,
             ResetedAt = null,
             Token = UserPasswordReset
         });

@@ -1,5 +1,6 @@
 ﻿using Ipe.Domain.Errors;
 using Ipe.Domain.Models;
+using Ipe.UseCases.Interfaces;
 using Ipe.UseCases.Interfaces.Repositories;
 using Ipe.UseCases.Interfaces.Services;
 
@@ -11,18 +12,24 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
         private readonly IOrderRepository _orderRepository;
         private readonly IPlantRepository _plantRepository;
         private readonly IPaymentService _paymentService;
+        private readonly IEmailService _emailService;
+        private readonly IUserRepository _userRepository;
 
         public PlantUseCase(
             ITreeRepository treeRepository,
             IOrderRepository orderRepository,
             IPlantRepository plantRepository,
-            IPaymentService paymentService
+            IPaymentService paymentService,
+            IEmailService emailService,
+            IUserRepository userRepository
         )
         {
             _treeRepository = treeRepository;
             _orderRepository = orderRepository;
             _plantRepository = plantRepository;
             _paymentService = paymentService;
+            _emailService = emailService;
+            _userRepository = userRepository;
         }
 
         public async Task<PlantUseCaseOutput> Run(PlantUseCaseInput Input)
@@ -34,7 +41,7 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
                 throw new InvalidTreeIdException();
 
             Order Order = await CreateOrder(Input, Trees);
-
+            var User = await _userRepository.GetById(Input.UserId);
             var PaymentResult = await ExecutePayment(Input, Order, Trees);
 
             if(PaymentResult.Success)
@@ -42,15 +49,15 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
                 Task.WaitAll(new Task[]
                 {
                     UpdateOrderSucess(Order, PaymentResult),
-                    CreatePlant(Order, Trees)
-                });
+                    CreatePlant(Order, Trees),
+                    _emailService.SendPlantSuccessEmail(User.Email, User.Name)
+            });
             }
             else
             {
                 await UpdateOrderFail(Order);
+                await _emailService.SendPlantFailEmail(User.Email, User.Name);
             }
-
-            //disparar email
 
             return new PlantUseCaseOutput
             {
@@ -77,11 +84,12 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
                 .Select(tree => new Plant
                 {
                     OrderId = order.Id,
-                    Tree = Trees.Find(x => x.Id == tree.TreeId),
+                    UserId = order.UserId,
+                    TreeId = tree.TreeId,
                     Name = tree.Name,
                     Message = tree.Message,
                     Hastags = tree.Hastags
-                });
+                }).ToList();
 
             await _plantRepository.CreateMany(trees);
         }

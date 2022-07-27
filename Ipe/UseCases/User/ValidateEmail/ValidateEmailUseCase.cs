@@ -62,8 +62,6 @@ namespace Ipe.UseCases.ValidateEmail
 		private async Task UpdateMailVerificationRegister(MailVerification MailVerification)
         {
 			MailVerification.Activated = true;
-			MailVerification.UpdatedAt = DateTime.Now;
-			MailVerification.ActivatedAt = DateTime.Now;
 			await _mailVerificationRepository.Update(MailVerification);
 		}
 

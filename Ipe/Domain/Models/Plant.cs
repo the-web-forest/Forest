@@ -7,8 +7,11 @@ namespace Ipe.Domain.Models
         [BsonElement("orderId")]
         public string OrderId { get; set; }
 
-        [BsonElement("tree")]
-        public Tree Tree { get; set; }
+        [BsonElement("userId")]
+        public string UserId { get; set; }
+
+        [BsonElement("treeId")]
+        public string TreeId { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }

@@ -4,6 +4,7 @@
 	{
 		Task Create(T Data);
 		Task Update(T Data);
+		Task CreateMany(List<T> DataList);
 	}
 }
 
