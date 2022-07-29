@@ -1,4 +1,5 @@
-﻿using Ipe.UseCases;
+﻿using FluentResults;
+using Ipe.UseCases;
 using Ipe.UseCases.CheckEmail;
 using Ipe.UseCases.GetCitiesByState;
 using Ipe.UseCases.GetStates;
@@ -7,6 +8,7 @@ using Ipe.UseCases.Login;
 using Ipe.UseCases.PlantUseCase.CreatePlant;
 using Ipe.UseCases.Register;
 using Ipe.UseCases.SendVerificationEmail;
+using Ipe.UseCases.TreeUseCase.GetTreesByFilter;
 using Ipe.UseCases.UserPasswordChange;
 using Ipe.UseCases.UserPasswordReset;
 using Ipe.UseCases.ValidateEmail;
@@ -23,6 +25,7 @@ namespace Ipe.Configuration
 			builder.Services.AddScoped<IUseCase<CheckEmailUseCaseInput, CheckEmailUseCaseOutput>, CheckEmailUseCase>();
 			builder.Services.AddScoped<IUseCase<GetStatesUseCaseInput, GetStatesUseCaseOutput>, GetStatesUseCase>();
 			builder.Services.AddScoped<IUseCase<GetCitiesByStateUseCaseInput, GetCitiesByStateUseCaseOutput>, GetCitiesByStateUseCase>();
+			builder.Services.AddScoped<IUseCase<GetTreesByFilterInputUseCase, Result<GetTreesByFilterOutputUseCase>>, GetTreesByFilterUseCase>();
 			builder.Services.AddScoped<IUseCase<SendVerificationEmailUseCaseInput, SendVerificationEmailUseCaseOutput>, SendVerificationEmailUseCase>();
 			builder.Services.AddScoped<IUseCase<UserPasswordResetUseCaseInput, UserPasswordResetUseCaseOutput>, UserPasswordResetUseCase>();
 			builder.Services.AddScoped<IUseCase<UserPasswordChangeUseCaseInput, UserPasswordChangeUseCaseOutput>, UserPasswordChangeUseCase>();
