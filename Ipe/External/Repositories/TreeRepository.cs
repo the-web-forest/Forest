@@ -1,6 +1,7 @@
 ﻿using Ipe.Domain.Models;
 using Ipe.UseCases.Interfaces.Repositories;
 using Ipe.UseCases.TreeUseCase.GetTreesByFilter;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Ipe.External.Repositories
@@ -21,7 +22,7 @@ namespace Ipe.External.Repositories
             var mongoFilter = builder.Empty;
 
             if (!String.IsNullOrEmpty(filter.Biome))
-                mongoFilter &= builder.Exists(x => x.Biome.Contains(filter.Biome));
+                mongoFilter &= builder.Regex("Biome", new BsonRegularExpression(filter.Biome));
             
             var allTrees = _collection
                 .Find(mongoFilter);
