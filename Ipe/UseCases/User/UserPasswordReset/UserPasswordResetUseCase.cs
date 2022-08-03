@@ -28,7 +28,14 @@ public class UserPasswordResetUseCase: IUseCase<UserPasswordResetUseCaseInput, U
         var User = await _userRepository.GetByEmail(Input.Email);
 
         if (User is null)
+        {
             throw new InvalidEmailException();
+        }
+
+        if (User.EmailVerified is false)
+        {
+            throw new UnverifiedEmailException();
+        }
 
         var PasswordResetToken = await CreateMailPasswordResetRegisterAsync(Input.Email);
 
