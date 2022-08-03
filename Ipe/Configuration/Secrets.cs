@@ -39,7 +39,7 @@ namespace Ipe.Configuration
             var EmailTemplateWelcome = client.GetSecret("Trees-Email-Templates-Welcome").Value.Value;
             var EmailTemplatePasswordReset = client.GetSecret("Trees-Email-Templates-PasswordReset").Value.Value;
             var EmailTemplatePlantSuccess = client.GetSecret("Trees-Email-Templates-PlantSuccess").Value.Value;
-            var EmailTemplatePlantFail = client.GetSecret("Trees-Email-Templates-PlantFail").Value.Value;
+            var EmailTemplateFirstPlant = client.GetSecret("Trees-Email-Templates-FirstPlant").Value.Value;
             var EmailUrlsWelcome = client.GetSecret("Trees-Email-Urls-Welcome").Value.Value;
             var EmailUrlsPasswordReset = client.GetSecret("Trees-Email-Urls-PasswordReset").Value.Value;
 
@@ -60,7 +60,7 @@ namespace Ipe.Configuration
             builder.Configuration["Email:Templates:WelcomeEmail"] = EmailTemplateWelcome;
             builder.Configuration["Email:Templates:PasswordResetEmail"] = EmailTemplatePasswordReset;
             builder.Configuration["Email:Templates:PlantSuccessEmail"] = EmailTemplatePlantSuccess;
-            builder.Configuration["Email:Templates:PlantFailEmail"] = EmailTemplatePlantFail;
+            builder.Configuration["Email:Templates:FirstPlantEmail"] = EmailTemplateFirstPlant;
             builder.Configuration["Email:Urls:WelcomeEmail"] = EmailUrlsWelcome;
             builder.Configuration["Email:Urls:PasswordResetEmail"] = EmailUrlsPasswordReset;
 

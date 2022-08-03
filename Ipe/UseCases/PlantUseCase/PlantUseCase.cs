@@ -49,20 +49,33 @@ namespace Ipe.UseCases.PlantUseCase.CreatePlant
                 Task.WaitAll(new Task[]
                 {
                     UpdateOrderSucess(Order, PaymentResult),
+                    HandleFirstPlant(User),
                     CreatePlant(Order, Trees),
                     _emailService.SendPlantSuccessEmail(User.Email, User.Name)
-            });
+                });
             }
             else
             {
                 await UpdateOrderFail(Order);
-                await _emailService.SendPlantFailEmail(User.Email, User.Name);
             }
+
+            
 
             return new PlantUseCaseOutput
             {
+                OrderId = PaymentResult.Success ? Order.Id : null,
                 Planted = PaymentResult.Success
             };
+        }
+
+        private async Task HandleFirstPlant(User User)
+        {
+            var UserHasPlant = await _plantRepository.FindSomePlantByUserId(User.Id);
+
+            if(UserHasPlant is null)
+            {
+                await _emailService.SendFirstPlantEmail(User.Email, User.Name);
+            }
         }
 
         private async Task UpdateOrderFail(Order order)

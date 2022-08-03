@@ -63,13 +63,14 @@ namespace Ipe.External.Services
             return Response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> SendPlantFailEmail(string Email, string Name)
+        public async Task<bool> SendFirstPlantEmail(string Email, string Name)
         {
             var UserFirstName = Name.Split(" ")[0];
-            var WelcomeEmailTemplateId = _configuration["Email:Templates:PlantFailEmail"];
+            var WelcomeEmailTemplateId = _configuration["Email:Templates:FirstPlantEmail"];
             var From = new EmailAddress(_configuration["Email:FromEmail"], _configuration["Email:FromName"]);
             var To = new EmailAddress(Email, Name);
-            var Message = MailHelper.CreateSingleTemplateEmail(From, To, WelcomeEmailTemplateId, null);
+            var TemplateData = new { userName = UserFirstName, userEmail = Email };
+            var Message = MailHelper.CreateSingleTemplateEmail(From, To, WelcomeEmailTemplateId, TemplateData);
             var Response = await _sendGridClient.SendEmailAsync(Message);
             return Response.IsSuccessStatusCode;
         }
