@@ -17,19 +17,23 @@ namespace Ipe.External.Repositories
 
         public async Task<GetTreesByFilterOutputUseCase> GetTreesByFilter(GetTreesByFilterInputUseCase filter)
         {
-            var builder = Builders<Tree>
-                .Filter;
+            var builder = Builders<Tree>.Filter;
+
             var mongoFilter = builder.Empty;
+            mongoFilter &= builder.Eq("deleted", false);
 
             if (!String.IsNullOrEmpty(filter.Biome))
                 mongoFilter &= builder.Regex("Biome", new BsonRegularExpression(filter.Biome));
-            
+
             var allTrees = _collection
                 .Find(mongoFilter);
 
             long? total = null;
             if (filter.RequiredTotal is not null && filter.RequiredTotal == true)
                 total = allTrees.CountDocuments();
+
+            /*allTrees
+                .Sort(Builders<Tree>.Sort.Ascending("name"));*/
 
             if (filter.Take is not null)
                 allTrees
@@ -43,7 +47,13 @@ namespace Ipe.External.Repositories
                 .ToListAsync()
                 .ContinueWith(trees => new GetTreesByFilterOutputUseCase
                 {
-                    Trees = trees.Result.ToList(),
+                    Trees = trees.Result.Select(tree => new TreeByFilter(
+                        tree.Name,
+                        tree.Description,
+                        tree.Image,
+                        tree.Value,
+                        tree.Biome
+                    )),
                     TotalCount = total
                 });
         }

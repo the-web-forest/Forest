@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Ipe.UseCases.Interfaces.Repositories;
+using Ipe.Util;
 
 namespace Ipe.UseCases.TreeUseCase.GetTreesByFilter
 {
@@ -20,14 +21,18 @@ namespace Ipe.UseCases.TreeUseCase.GetTreesByFilter
             {
                 var foundTrees = await treesRepository.GetTreesByFilter(input);
 
-                if (foundTrees.Trees.Count == 0)
-                    findResult.WithError("No trees found by the filter");
+                if (!foundTrees.Trees.Any())
+                {
+                    findResult.WithError("Not Found").WithReason(new ReasonBuilder("No trees has found"));
+                }
                 else
+                {
                     findResult.WithValue(foundTrees);
+                }
             }
             catch (Exception ex)
             {
-                findResult.WithError($"Error! An error ocurred trying to find trees by filter.\n{ex.InnerException}");
+                findResult.WithError("Internal error").WithReason(new ReasonBuilder(ex.InnerException.Message));
             }
 
             return findResult;
